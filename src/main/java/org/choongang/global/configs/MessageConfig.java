@@ -14,7 +14,8 @@ public class MessageConfig {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setDefaultEncoding("UTF-8");
         ms.setUseCodeAsDefaultMessage(true);
-        ms.setBasenames("messages.commons", "messages.validations", "messages.errors");
+        ms.setBasenames("messages.commons", "messages.validations");
+        //ms.setBasenames("messages.commons", "messages.validations", "messages.error");
         return ms;
 
     }

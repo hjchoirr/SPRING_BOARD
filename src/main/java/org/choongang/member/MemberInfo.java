@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-
 @Data
 @Builder
 public class MemberInfo implements UserDetails {
@@ -24,21 +23,21 @@ public class MemberInfo implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return "";
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+        return email;
     }
 
     @Override
     public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
         return true;
     }
 
@@ -51,6 +50,4 @@ public class MemberInfo implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
 }

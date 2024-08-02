@@ -4,6 +4,15 @@
     layout:decorate="~{front/layouts/main}">
 
     <main layout:fragment="content">
+        <script>
+            function send_email() {
+
+                const email = document.getElementById("email").value;
+                frmRegist.action="/api/email/verify/" + email;
+                frmRegist.submit();
+
+            }
+        </script>
         <h1 th:text="#{회원가입}"></h1>
         <form name="frmRegist" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
             <div class="error global" th:each="err :${#fields.globalErrors()}" th:text="${err}"></div>
@@ -11,7 +20,8 @@
             <dl>
                 <dt th:text="#{이메일}"></dt>
                 <dd>
-                    <input type="text" name="email" th:field="*{email}">
+                    <input type="text" name="email" id="email" th:field="*{email}">
+                    <button type="button" th:onclick="send_email()" th:text="#{이메일인증}"></button>
                     <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
                 </dd>
             </dl>
