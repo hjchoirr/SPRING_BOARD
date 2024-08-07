@@ -10,7 +10,7 @@ import org.choongang.member.constants.Authority;
 @Data
 @Entity
 @Builder
-@IdClass(Authorities.class)
+@IdClass(AuthoritiesId.class)
 @NoArgsConstructor @AllArgsConstructor
 public class Authorities  {
     @Id

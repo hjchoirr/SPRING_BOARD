@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<th:block layout:fragment="addCommonScript">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=063ffec469036373c5a718c90f2f3bdb"></script>
+</th:block>
+
+<main layout:fragment="content">
+
+<!-- view.js 의 1번, 2번 테스트 할때-->
+<div id="map"></div>
+    <button type="button"  class="remove">마커1 제거</button>
+    <button type="button"  class="remove">마커2 제거</button>
+    <button type="button"  class="remove">마커3 제거</button>
+    <button type="button"  class="remove">마커4 제거</button>
+
+</main>
+</html>

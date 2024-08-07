@@ -18,6 +18,10 @@
         <script th:src="@{/common/js/common.js}"></script>
         <script th:src="@{/mobile/js/common.js}"></script>
 
+        <script th:if="${addCommonScript != null}"
+                th:each="jsFile : ${addCommonScript}" th:src="@{/common/js/{file}.js(file=${jsFile})}"></script>
+        <th:block layout:fragment="addCommonScript"></th:block>
+
         <!--컨트롤러가 넘겨주는 js-->
         <script th:if="${addScript != null}"
                 th:each="jsFile : ${addScrpt}" th:src="@{/mobile/s/{file}.js(file=${jsFile})}"></script>
