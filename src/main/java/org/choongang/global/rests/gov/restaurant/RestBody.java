@@ -5,5 +5,5 @@ import java.util.List;
 
 @Data
 public class RestBody {
-    private List<RestRestaurant> restRestaurant;
+    private List<Restaurant> restaurant;
 }

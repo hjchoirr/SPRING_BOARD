@@ -9,12 +9,16 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class BeanConfig {
 
-    public ObjectMapper om = new ObjectMapper();
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
 
+        return om;
+    }
 
     @Bean
     public RestTemplate restTemplate() {
-        om.registerModule(new JavaTimeModule());
         return new RestTemplate();
     }
 }
