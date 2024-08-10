@@ -16,6 +16,7 @@ public class RestImage {
     @Id
     @GeneratedValue
     private Long seq;
+    @Column(nullable = false)
     private String rstrImgUrl;
 
     @JsonIgnore

@@ -1,5 +1,6 @@
 package org.choongang.global.configs;
 
+import jakarta.servlet.http.HttpSession;
 import org.choongang.member.services.LoginFailureHandler;
 import org.choongang.member.services.LoginSuccessHandler;
 import org.choongang.member.services.MemberAuthenticationEntryPoint;
@@ -21,7 +22,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, MemberInfoService memberInfoService) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, MemberInfoService memberInfoService) throws Exception  {
 
         //로그인 로그아웃
         http.formLogin(f -> {
@@ -35,7 +36,13 @@ public class SecurityConfig {
 
         http.logout(f -> {
            f.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-           .logoutSuccessUrl("/member/login");
+           //.logoutSuccessUrl("/member/login");
+           .logoutSuccessHandler((req, res, e) -> {
+               HttpSession session = req.getSession();
+               session.removeAttribute("device");
+
+               res.sendRedirect(req.getContextPath() + "/member/login");
+            });
         });
 
         // 인가 .. 권한 설정

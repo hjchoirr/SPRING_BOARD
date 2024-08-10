@@ -3,6 +3,7 @@ package org.choongang.member.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.choongang.global.Utils;
 import org.choongang.global.exceptions.ExceptionProcessor;
 import org.choongang.member.services.MemberSaveService;
 import org.choongang.member.validators.JoinValidator;
@@ -20,6 +21,7 @@ public class MemberController  implements ExceptionProcessor {
 
     private final JoinValidator joinValidator;
     private final MemberSaveService memberSaveService;
+    private final Utils utils;
     /*
     private final MemberUtil memberUtil;
     private final BoardRepository repository;
@@ -41,7 +43,7 @@ public class MemberController  implements ExceptionProcessor {
             throw new AlertRedirectException("AlertRedirectException 발생,self", "/member/login", HttpStatus.BAD_REQUEST);
         }
         */
-        return "front/member/join";
+        return utils.tpl("member/join");
     }
 
     @PostMapping("/join")
@@ -49,7 +51,7 @@ public class MemberController  implements ExceptionProcessor {
         joinValidator.validate(form, errors);
 
         if (errors.hasErrors()) {
-            return "front/member/join";
+            return utils.tpl("member/join");
         }
 
         memberSaveService.save(form); //회원 가입 처리
@@ -68,7 +70,7 @@ public class MemberController  implements ExceptionProcessor {
                 return "redirect:/member/password/reset";
             }
         }
-        return "front/member/login";
+        return utils.tpl("member/login");
     }
 
     @GetMapping("/test1")

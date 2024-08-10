@@ -1,7 +1,10 @@
 package org.choongang.global.rests.gov.restaurant;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import lombok.*;
+import org.choongang.member.entities.BaseEntity;
 
 import java.util.List;
 
@@ -10,30 +13,36 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+//@JsonNaming(PropertyNamingStrategy.class)
+public class Restaurant extends BaseEntity {
     @Id
+    //@JsonProperty("RSTR_ID")
     private Long rstrId;
+
     @Column(length = 100, nullable = false)
     private String rstrNm;
-    @Column(length = 150, nullable = false)
+
+    @Column(length = 150)
     private String rstrRdnmadr;
-    @Column(length = 150, nullable = false)
+
+    @Column(length = 150)
     private String rstrLnnoAdr;
 
-    private Double rstrLa;
-    private Double rstrLo;
+    private Double rstrLa; // 위도
+    private Double rstrLo; // 경도
 
     @Column(length = 20)
     private String rstrTelno;
     @Column(length = 50)
-    private String bsnsStatmBzcndNm;
+    private String bsnsStatmBzcndNm; // 영업신고증업태명
     @Column(length = 50)
-    private String bsnsLcncNm;
+    private String bsnsLcncNm;  // 영업인허가명
     @Lob
-    private String rstrIntrcnCont;
+    private String rstrIntrcnCont; // 음식점소개내용
 
-    @Column(length = 10)
-    private String rstrAreaClsfNm;
+    @Column(length = 50)
+    private String areaNm;
 
     @ToString.Exclude
     @OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)

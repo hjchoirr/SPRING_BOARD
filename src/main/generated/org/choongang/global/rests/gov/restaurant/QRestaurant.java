@@ -20,13 +20,24 @@ public class QRestaurant extends EntityPathBase<Restaurant> {
 
     public static final QRestaurant restaurant = new QRestaurant("restaurant");
 
+    public final org.choongang.member.entities.QBaseEntity _super = new org.choongang.member.entities.QBaseEntity(this);
+
+    public final StringPath areaNm = createString("areaNm");
+
     public final StringPath bsnsLcncNm = createString("bsnsLcncNm");
 
     public final StringPath bsnsStatmBzcndNm = createString("bsnsStatmBzcndNm");
 
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> deletedAt = _super.deletedAt;
+
     public final ListPath<Food, QFood> food = this.<Food, QFood>createList("food", Food.class, QFood.class, PathInits.DIRECT2);
 
-    public final StringPath rstrAreaClsfNm = createString("rstrAreaClsfNm");
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
 
     public final NumberPath<Long> rstrId = createNumber("rstrId", Long.class);
 
