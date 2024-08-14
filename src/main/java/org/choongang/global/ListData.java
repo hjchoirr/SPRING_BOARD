@@ -1,8 +1,15 @@
 package org.choongang.global;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.List;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ListData<T>{
     private List<T> items; //목록데이터
     private Pagination pagination;
+
 }

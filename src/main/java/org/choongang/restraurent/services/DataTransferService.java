@@ -56,10 +56,15 @@ public class DataTransferService {
         System.out.println("result.getHeader().get(\"resultCode\") : " + result.getHeader().get("resultCode"));
 
 
-        //System.out.println(result2);
+        System.out.println("====result===");
+        System.out.println(result);
 
         List<Map<String,String>> tmp2 = result2.getBody();
         List<Map<String,String>> tmp = result.getBody();
+
+        System.out.println("====tmp====");
+        System.out.println(tmp);
+
 
         List<Restaurant> items = tmp.stream().map(d-> {
                     Map<String, String> extra = getExtra(tmp2, d.get("RSTR_ID"));
@@ -88,6 +93,8 @@ public class DataTransferService {
             return;
         }
         restaurentRepository.saveAllAndFlush(items);
+
+
     }
 
     private Map<String, String> getExtra(List<Map<String, String>> items, String rstrId) {
