@@ -2,7 +2,7 @@ package org.choongang.board.services;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.choongang.board.controllers.RequestBoard;
+import org.choongang.board.controllers.RequestBoardData;
 import org.choongang.board.entities.Board;
 import org.choongang.board.entities.BoardData;
 import org.choongang.board.exceptions.BoardDataNotFoundException;
@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 @RequiredArgsConstructor
 @Service
 @Transactional  // board, member fetch=Lazy 이므로 영속성 유지 위해 Transactional, 안하면 못 가져올수 있다
-public class BoardSaveService {
+public class BoardDataSaveService {
     private final BoardDataRepository boardDataRepository;
     private final BoardRepository boardRepository;
     private final MemberUtil memberUtil;
@@ -26,7 +26,7 @@ public class BoardSaveService {
     private final PasswordEncoder encoder;
     private final FileUploadDoneService doneService;
 
-    public BoardData save(RequestBoard form) {
+    public BoardData save(RequestBoardData form) {
         String mode = form.getMode();
         mode = StringUtils.hasText(mode) ? mode.trim() : "write";
 

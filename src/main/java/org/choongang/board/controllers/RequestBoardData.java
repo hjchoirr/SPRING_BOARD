@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class RequestBoard {
+public class RequestBoardData {
     private Long seq; //글번호 글수정시 필요
     private String mode = "write"; // write 작성, update 수정
 

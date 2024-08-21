@@ -19,7 +19,7 @@ public class CommonInterceptor implements HandlerInterceptor {
 
     private void checkDevice(HttpServletRequest request) {
         String device = request.getParameter("device");
-        if(StringUtils.hasText(device)) {
+        if(!StringUtils.hasText(device)) {
             return;
         }
 

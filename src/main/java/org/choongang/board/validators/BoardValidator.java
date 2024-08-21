@@ -1,7 +1,7 @@
 package org.choongang.board.validators;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.board.controllers.RequestBoard;
+import org.choongang.board.controllers.RequestBoardData;
 import org.choongang.global.validators.PasswordValidator;
 import org.choongang.member.MemberUtil;
 import org.springframework.stereotype.Component;
@@ -17,12 +17,12 @@ public class BoardValidator implements Validator, PasswordValidator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz.isAssignableFrom(RequestBoard.class);
+        return clazz.isAssignableFrom(RequestBoardData.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        RequestBoard form = (RequestBoard) target;
+        RequestBoardData form = (RequestBoardData) target;
 
         if(!memberUtil.isLogin() ) {
             String guestPw = form.getGuestPw();

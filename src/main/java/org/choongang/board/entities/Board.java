@@ -20,4 +20,6 @@ public class Board extends BaseMemberEntity {
 
     @Column(length = 60, nullable = false)
     private String bName;
+
+    private Boolean active = true;
 }

@@ -21,6 +21,8 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final org.choongang.member.entities.QBaseMemberEntity _super = new org.choongang.member.entities.QBaseMemberEntity(this);
 
+    public final BooleanPath active = createBoolean("active");
+
     public final StringPath bId = createString("bId");
 
     public final StringPath bName = createString("bName");
