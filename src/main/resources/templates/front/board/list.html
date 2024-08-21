@@ -68,7 +68,7 @@
                         <!--<input type="number" th:name="${'listOrder_' + status.index}" th:value="*{listOrder}">-->
                     </td>
                     <td>
-                        <a th:href="@{/board/edit}" class="sbtn">
+                        <a th:href="${'/board/edit/' + item.bId} " class="sbtn">
                             <i class="xi-pen"></i> 수정하기
                         </a>
                     </td>

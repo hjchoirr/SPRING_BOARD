@@ -23,6 +23,7 @@ public class BoardConfigService {
 
         board.setBId(bId);
         board.setBName(bName);
+        board.setActive(form.getActive());
 
         Board board1 = boardRepository.saveAndFlush(board);
 
@@ -32,6 +33,10 @@ public class BoardConfigService {
 
     public List<Board> getBoards() {
         return boardRepository.findAll();
+    }
+
+    public Board getBoard(String bId) {
+        return boardRepository.findById(bId).orElse(null);
     }
 
 }

@@ -8,10 +8,7 @@ import org.choongang.menus.Menu;
 import org.choongang.menus.MenuDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,15 +39,22 @@ public class BoardController {
 
     @GetMapping("/add")
     public String add(RequestBoardConfig form) {
+
         return utils.tpl("board/add");
     }
-    @GetMapping("/edit")
-    public String edit(RequestBoardConfig form) {
+    @GetMapping("/edit/{bId}")
+    public String edit(@PathVariable("bId") String bId,  RequestBoardConfig form) {
 
+        Board board = boardConfigService.getBoard(bId);
+        form.setBId(board.getBId());
+        form.setBName(board.getBName());
+        form.setActive(board.getActive());
         return utils.tpl("board/edit");
     }
     @PostMapping("/save")
     public String save(RequestBoardConfig form) {
+        System.out.println(form);
+
         boardConfigService.save(form);
         return utils.tpl("board/add");
     }

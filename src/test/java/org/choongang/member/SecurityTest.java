@@ -1,5 +1,7 @@
 package org.choongang.member;
 
+import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,12 +15,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @AutoConfigureMockMvc
 public class SecurityTest {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private MemberRepository repository;
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Test
     void test1() throws Exception {
@@ -38,5 +44,11 @@ public class SecurityTest {
     void test3() throws Exception{
         mockMvc.perform(get("/admim"))
                 .andDo(print());
+    }
+    @Test
+    void test4() {
+        Member member = memberRepository.findByEmail("user02@test.com").orElse(null);
+        System.out.println(member);
+
     }
 }
